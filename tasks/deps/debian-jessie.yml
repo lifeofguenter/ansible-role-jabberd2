@@ -1,0 +1,37 @@
+---
+
+- name: add backports
+  apt_repository:
+    repo: "deb http://ftp.debian.org/debian {{ ansible_distribution_release }}-backports main non-free contrib"
+    state: present
+  become: yes
+
+- name: install dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+  with_items:
+    - make
+    - gcc
+    - ca-certificates
+    - libudns-dev
+    - libexpat1-dev
+    - libidn11-dev
+    - zlib1g-dev
+    - libgsasl7-dev
+    #- libhttp-parser-dev (needed for websockets only))
+  become: yes
+
+- name: install dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    default_release: jessie-backports
+    update_cache: yes
+    cache_valid_time: 3600
+  with_items:
+    - libssl-dev
+    - default-libmysqlclient-dev
+  become: yes

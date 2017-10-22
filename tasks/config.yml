@@ -1,0 +1,19 @@
+---
+
+- name: setup db
+
+- name: apply configs
+  template:
+    src: "{{ item }}"
+    dest: /etc/jabberd2/{{ item }}
+    mode: 0644
+  with_items:
+    - c2s.xml
+    - jabberd.cfg
+    - router-filter.xml
+    - router-users.xml
+    - router.xml
+    - s2s.xml
+    - sm.xml
+  become: yes
+  notify: restart_jabberd2

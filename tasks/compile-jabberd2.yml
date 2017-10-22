@@ -1,0 +1,38 @@
+---
+
+- name: fetch source
+  unarchive:
+    src: https://github.com/jabberd2/jabberd2/releases/download/jabberd-{{ jabberd2_version }}/jabberd-{{ jabberd2_version }}.tar.gz
+    dest: /tmp
+    remote_src: yes
+
+- name: make clean
+  command: make clean
+  args:
+    chdir: /tmp/jabberd-{{ jabberd2_version }}
+  ignore_errors: yes
+
+- name: configure
+  command: >
+    ./configure
+    --sysconfdir=/etc/jabberd2
+    --program-prefix=jabberd2-
+    --localstatedir=/var
+    --enable-mysql
+    --enable-mio=epoll
+    --enable-superseded
+    --enable-experimental
+  args:
+    chdir: /tmp/jabberd-{{ jabberd2_version }}
+
+- name: make
+  command: make
+  args:
+    chdir: /tmp/jabberd-{{ jabberd2_version }}
+
+- name: install
+  command: make install
+  args:
+    chdir: /tmp/jabberd-{{ jabberd2_version }}
+  become: yes
+  notify: restart_jabberd2

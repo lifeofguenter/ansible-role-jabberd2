@@ -1,0 +1,16 @@
+---
+
+- name: install dependencies
+  include_tasks: packages-{{ ansible_distribution | lower }}-{{ ansible_distribution_release }}.yml
+
+- name: get current jabberd2 version
+  command: /usr/local/bin/jabberd2-router -h
+  register: jabberd2_current
+  ignore_errors: yes
+
+- include: compile-jabberd2.yml
+  when: jabberd2_current.rc != 0 or not jabberd2_current.stderr | search(jabberd2_version_string_match)
+
+- include: config.yml
+
+#- include: mu-conference.yml
