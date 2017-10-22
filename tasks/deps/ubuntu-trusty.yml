@@ -9,6 +9,7 @@
   with_items:
     - make
     - gcc
+    - pkg-config
     - ca-certificates
     - libudns-dev
     - libexpat1-dev
@@ -18,12 +19,39 @@
     #- libhttp-parser-dev (needed for websockets only))
     - libssl-dev
     - libmysqlclient-dev
+    - libglib2.0-dev
   become: yes
 
 # init-file
 - name: install init.d
   copy:
-    src: jabberd.init.sh
+    src: sysvinit/jabberd2.sh
     dest: /etc/init.d/jabberd
     mode: 'a+x'
+  become: yes
+
+- name: copy over default
+  copy:
+    src: sysvinit/default.conf
+    dest: /etc/default/jabberd2
+    mode: 0644
+  become: yes
+
+- name: create init/jabberd2.d
+  file:
+    path: /etc/init.d/jabberd2.d
+    state: directory
+    mode: 0755
+  become: yes
+
+- name: copy components
+  copy:
+    src: sysvinit/{{ item }}.sh
+    dest: /etc/init.d/jabberd2.d/{{ item }}
+    mode: 'a+x'
+  with_items:
+    - 10router
+    - 30sm
+    - 40s2s
+    - 50c2s
   become: yes

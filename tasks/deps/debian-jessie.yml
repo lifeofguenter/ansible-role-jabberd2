@@ -15,6 +15,7 @@
   with_items:
     - make
     - gcc
+    - pkg-config
     - ca-certificates
     - libudns-dev
     - libexpat1-dev
@@ -34,4 +35,5 @@
   with_items:
     - libssl-dev
     - default-libmysqlclient-dev
+    - libglib2.0-dev
   become: yes
