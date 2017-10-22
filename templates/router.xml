@@ -1,6 +1,6 @@
 <!-- Router configuration -->
 <router>
-  <pidfile>/run/jabberd2/${id}.pid</pidfile>
+  <pidfile>/run/jabberd2/router.pid</pidfile>
 
   <log type='file'>
     <file>/var/log/jabberd2/router.log</file>

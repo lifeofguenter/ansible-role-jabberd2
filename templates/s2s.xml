@@ -1,6 +1,6 @@
 <!-- s2s configuration -->
 <s2s>
-  <pidfile>/run/jabberd2/${id}.pid</pidfile>
+  <pidfile>/run/jabberd2/s2s.pid</pidfile>
 
   <router>
     <ip>127.0.0.1</ip>
@@ -45,7 +45,7 @@
     <secret>secret</secret>
     -->
 
-    {{ if jabberd2_cert_pemfile is defined and jabberd2_cert_cachain is defined }}
+    {% if jabberd2_cert_pemfile is defined and jabberd2_cert_cachain is defined %}
     <!-- File containing an SSL certificate and private key to use when setting
          up encrypted s2s connections with other servers (STARTTLS + Dialback).
          From SSL_CTX_use_certificate_chain_file(3): "The certificates must be
@@ -59,7 +59,7 @@
     <verify-mode>7</verify-mode>
     <ciphers>EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH</ciphers>
     <cachain>{{ jabberd2_cert_cachain }}</cachain>
-    {{ endif }}
+    {% endif %}
   </local>
 
   <!-- input/output settings -->
@@ -229,9 +229,9 @@
   <out-conn-reuse/>
 
   <security>
-    {{ if jabberd2_cert_pemfile is defined and jabberd2_cert_cachain is defined }}
+    {% if jabberd2_cert_pemfile is defined and jabberd2_cert_cachain is defined %}
     <require_tls/>
-    {{ endif }}
+    {% endif %}
 
     <!--
         Domain whitelisting

@@ -1,5 +1,42 @@
 ---
 
+- name: create jabber user
+  user:
+    name: jabber
+    home: /var/lib/jabber
+    system: yes
+  become: yes
+
+- name: create run folder
+  file:
+    path: /run/jabberd2
+    state: directory
+    mode: 0755
+    owner: jabber
+  become: yes
+
+- name: perma run folder
+  copy:
+    src: tmpfiles.conf
+    dest: /etc/tmpfiles.d/jabberd2.conf
+    mode: 0644
+  become: yes
+
+- name: create log folder
+  file:
+    path: /var/log/jabberd2
+    state: directory
+    mode: 0755
+    owner: jabber
+  become: yes
+
+- name: add logrotate config
+  copy:
+    src: logrotate
+    dest: /etc/logrotate.d/jabberd2
+    mode: 0644
+  become: yes
+
 - name: apply configs
   template:
     src: "{{ item }}"

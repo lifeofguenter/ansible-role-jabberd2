@@ -1,0 +1,16 @@
+/var/log/jabberd2/*.log {
+  daily
+  missingok
+  rotate 7
+  compress
+  delaycompress
+  notifempty
+  create
+  sharedscripts
+  postrotate
+    kill -s HUP $(cat /run/jabberd2/router.pid) &> /dev/null
+    kill -s HUP $(cat /run/jabberd2/sm.pid) &> /dev/null
+    kill -s HUP $(cat /run/jabberd2/c2s.pid) &> /dev/null
+    kill -s HUP $(cat /run/jabberd2/s2s.pid) &> /dev/null
+  endscript
+}

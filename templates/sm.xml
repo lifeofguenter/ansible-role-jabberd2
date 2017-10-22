@@ -1,6 +1,6 @@
 <!-- Session manager configuration -->
 <sm>
-  <pidfile>/run/jabberd2/${id}.pid</pidfile>
+  <pidfile>/run/jabberd2/sm.pid</pidfile>
 
   <router>
     <ip>127.0.0.1</ip>

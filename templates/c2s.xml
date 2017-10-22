@@ -1,6 +1,6 @@
 <!-- c2s configuration -->
 <c2s>
-  <pidfile>/run/jabberd2/${id}.pid</pidfile>
+  <pidfile>/run/jabberd2/c2s.pid</pidfile>
 
   <router>
     <ip>127.0.0.1</ip>
@@ -23,13 +23,13 @@
   <!-- Local network configuration -->
   <local>
     <id realm='{{ jabberd2_domain }}'
-        {{ if jabberd2_cert_pemfile is defined and jabberd2_cert_cachain is defined }}
+        {% if jabberd2_cert_pemfile is defined and jabberd2_cert_cachain is defined %}
         pemfile='{{ jabberd2_cert_pemfile }}'
         verify-mode='7'
         ciphers='EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH'
         cachain='{{ jabberd2_cert_cachain }}'
         require-starttls='mu'
-        {{ endif }}
+        {% endif %}
         register-enable='mu'
         register-oob='https://{{ jabberd2_domain }}/register'
     >{{ jabberd2_domain }}</id>
@@ -229,9 +229,9 @@
            these mechanisms, then it will not be offered regardless of
            whether or not it is enabled here. -->
       <traditional>
-        {{ if jabberd2_cert_pemfile is not defined and jabberd2_cert_cachain is not defined }}
+        {% if jabberd2_cert_pemfile is not defined and jabberd2_cert_cachain is not defined %}
         <plain/>
-        {{ endif }}
+        {% endif %}
       </traditional>
 
       <!-- SASL authentication mechanisms. Comment out any that you
@@ -239,9 +239,9 @@
            module does not support one of these mechanisms, then it will
            not be offered. -->
       <sasl>
-        {{ if jabberd2_cert_pemfile is not defined and jabberd2_cert_cachain is not defined }}
+        {% if jabberd2_cert_pemfile is not defined and jabberd2_cert_cachain is not defined %}
         <plain/>
-        {{ endif }}
+        {% endif %}
       </sasl>
 
     </mechanisms>
