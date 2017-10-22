@@ -8,16 +8,6 @@
   register: jabberd2_current
   ignore_errors: yes
 
-- debug:
-    var: jabberd2_version_string_match
-
-- debug:
-    var: jabberd2_current.stdout
-
-- debug:
-    msg: 'matched!'
-  when: jabberd2_current.stdout | search(jabberd2_version_string_match)
-
 - include_tasks: compile-jabberd2.yml
   when: jabberd2_current.stdout is undefined or not jabberd2_current.stdout | search(jabberd2_version_string_match)
 
