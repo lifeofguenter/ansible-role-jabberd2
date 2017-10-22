@@ -19,7 +19,7 @@ PIDBASE=/run/jabberd2
 case "$1" in
    start)
    	echo -n "Starting $DESC: "
-   	su $JABBERUSER -c "/usr/local/bin/jabberd $DEBUG &"
+   	su $JABBERUSER -c "$DAEMON $DEBUG &"
 	echo "$NAME."
       ;;
    stop)
