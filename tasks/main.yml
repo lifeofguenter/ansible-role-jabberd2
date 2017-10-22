@@ -8,9 +8,9 @@
   register: jabberd2_current
   ignore_errors: yes
 
-- include: compile-jabberd2.yml
+- include_tasks: compile-jabberd2.yml
   when: jabberd2_current.stdout is not defined or not jabberd2_current.stdout | search(jabberd2_version_string_match)
 
-- include: config.yml
+- include_tasks: config.yml
 
-#- include: mu-conference.yml
+#- include_tasks: mu-conference.yml

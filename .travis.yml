@@ -43,5 +43,7 @@ script:
 
   - /usr/local/bin/jabberd2-router -h
 
+  - curl -sSfi localhost:5222
+
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

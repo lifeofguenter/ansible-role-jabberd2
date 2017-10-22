@@ -1,6 +1,6 @@
 ---
 
-jabberd2_version_string_match: router - jabberd router ({{ jabberd2_version }})
+jabberd2_version_string_match: "router - jabberd router ({{ jabberd2_version }})"
 
 jabberd2_router_user_name: jabberd
 
