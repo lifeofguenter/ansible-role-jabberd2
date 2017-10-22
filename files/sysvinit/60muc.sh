@@ -39,9 +39,9 @@ case "$1" in
    status)
 	printf "${NAME}"
         if [ `pidof ${COMMAND}` ]; then
-            printf " running"
+            printf " running\n"
         else
-            printf " not running"
+            printf " not running\n"
         fi
 	;;
    restart)

@@ -40,10 +40,16 @@
 
 - name: add systemd service
   copy:
-    src: muc.service.ini
-    dest: /lib/systemd/system/muc.service
+    src: jabberd-muc.service.ini
+    dest: /lib/systemd/system/jabberd-muc.service
     mode: 0644
   become: yes
   notify:
     - reload_systemd
     - restart_jabberd2
+
+- name: enable muc
+  service:
+    name: jabberd-muc
+    enabled: yes
+  become: yes

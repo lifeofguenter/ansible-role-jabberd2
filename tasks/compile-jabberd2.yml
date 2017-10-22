@@ -21,7 +21,6 @@
     --enable-mysql
     --enable-mio=epoll
     --enable-superseded
-    --enable-experimental
   args:
     chdir: /tmp/jabberd-{{ jabberd2_version }}
 

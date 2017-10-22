@@ -26,10 +26,10 @@
         {% if jabberd2_cert_pemfile is defined and jabberd2_cert_cachain is defined %}
         pemfile='{{ jabberd2_cert_pemfile }}'
         verify-mode='7'
-        ciphers='EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH'
         cachain='{{ jabberd2_cert_cachain }}'
         require-starttls='mu'
         {% endif %}
+        {% if jabberd2_cert_ciphers is defined %}ciphers='{{ jabberd2_cert_ciphers }}'{% endif %}
         register-enable='mu'
         register-oob='https://{{ jabberd2_domain }}/register'
     >{{ jabberd2_domain }}</id>

@@ -9,3 +9,5 @@ jabberd2_mysql_user: jabberd2
 jabberd2_mysql_db: jabberd2
 
 mu_conference_version: 0.8.81
+
+jabberd2_cert_ciphers: EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH

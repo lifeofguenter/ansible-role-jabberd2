@@ -371,9 +371,7 @@
          a session. This is useful if you already have users in an
          external authentication database (eg LDAP) and you don't want
          them to have to register. -->
-    <!--
     <auto-create/>
-    -->
 
     <!-- Define maximum size in bytes of fields of vcards.
          There is a recommendation that the avatar picture SHOULD NOT
