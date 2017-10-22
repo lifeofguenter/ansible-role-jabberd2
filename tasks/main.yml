@@ -1,7 +1,7 @@
 ---
 
 - name: install dependencies
-  include_tasks: packages-{{ ansible_distribution | lower }}-{{ ansible_distribution_release }}.yml
+  include_tasks: deps/{{ ansible_distribution | lower }}-{{ ansible_distribution_release }}.yml
 
 - name: get current jabberd2 version
   command: /usr/local/bin/jabberd2-router -h
