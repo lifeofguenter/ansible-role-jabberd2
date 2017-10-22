@@ -6,6 +6,6 @@
     jabberd2_router_user_secret: foobar
     jabberd2_component_secret: foobar2
     jabberd2_domain: foobar.localdomain
-    jabberd2_user: root
+    jabberd2_mysql_user: root
   roles:
     - ansible-role-jabberd2

@@ -1,0 +1,7 @@
+---
+
+- name: fetch source
+  unarchive:
+    src: https://ftp.weheartwebsites.de/linux/misc/mu-conference-{{ mu_conference_version }}.tar.gz
+    dest: /tmp
+    remote_src: yes

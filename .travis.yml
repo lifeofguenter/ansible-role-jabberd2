@@ -37,13 +37,13 @@ install:
   - printf '[defaults]\nroles_path=../' >ansible.cfg
 
 script:
-  - "ansible-playbook tests/test.yml -i tests/inventory --connection=local"
+  - ansible-playbook tests/test.yml -i tests/inventory --connection=local
 
-  - "ansible-playbook tests/test.yml -i tests/inventory --connection=local"
+  - ansible-playbook tests/test.yml -i tests/inventory --connection=local
 
-  - /usr/local/bin/jabberd2-router -h
+  - /usr/local/bin/jabberd2-router -h || true
 
-  - sudo /etc/init.d/jabberd start
+  - sudo /etc/init.d/jabberd status
 
   - sudo netstat -lnp
 
