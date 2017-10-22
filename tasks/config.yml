@@ -3,7 +3,7 @@
 - name: create jabber user
   user:
     name: jabber
-    home: /var/lib/jabber
+    home: /var/jabber
     system: yes
   become: yes
 

@@ -43,9 +43,13 @@ script:
 
   - /usr/local/bin/jabberd2-router -h
 
+  - sudo /etc/init.d/jabberd start
+
   - sudo netstat -lnp
 
   - sudo ps auxww | grep -i jabber
+
+  - cat /var/log/jabberd2/*.log
 
   - curl -sSfi localhost:5222
 
