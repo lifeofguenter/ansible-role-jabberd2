@@ -189,3 +189,27 @@ CREATE TABLE `status` (
     `last-login` INT DEFAULT '0',
     `last-logout` INT DEFAULT '0',
     `xml` TEXT ) DEFAULT CHARSET=UTF8;
+
+--
+-- mu-conference
+--
+CREATE TABLE `rooms` (
+    `jid` varchar(512) NOT NULL,
+    `name` text NOT NULL,
+    `desc` text NOT NULL,
+    `topic` text NOT NULL,
+    `users` int(11) NOT NULL default '0',
+    `public` tinyint(1) NOT NULL,
+    `open` tinyint(1) NOT NULL,
+    `secret` text NOT NULL,
+    UNIQUE KEY `jid` (`jid`)
+) DEFAULT CHARSET=UTF8;
+
+--
+-- Table structure for table `rooms_lists`
+--
+CREATE TABLE `rooms_lists` (
+    `jid_room` varchar(512) NOT NULL,
+    `jid_user` varchar(512) NOT NULL,
+    `affil` enum('administrator','owner','member','outcast') NOT NULL
+) DEFAULT CHARSET=UTF8;
