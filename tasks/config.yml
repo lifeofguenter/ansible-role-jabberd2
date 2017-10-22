@@ -15,12 +15,17 @@
     owner: jabber
   become: yes
 
+- stat:
+    path: /etc/tmpfiles.d
+  register: stat_tmpfilesd
+
 - name: perma run folder
   copy:
     src: tmpfiles.conf
     dest: /etc/tmpfiles.d/jabberd2.conf
     mode: 0644
   become: yes
+  when: stat_tmpfilesd.stat.exists
 
 - name: create log folder
   file:
