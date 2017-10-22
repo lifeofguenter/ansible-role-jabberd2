@@ -19,3 +19,11 @@
     - libssl-dev
     - libmysqlclient-dev
   become: yes
+
+# init-file
+- name: install init.d
+  copy:
+    src: jabberd.init.sh
+    dest: /etc/init.d/jabberd
+    mode: 'a+x'
+  become: yes
