@@ -1,7 +1,5 @@
 ---
 
-- name: setup db
-
 - name: apply configs
   template:
     src: "{{ item }}"

@@ -17,6 +17,8 @@ addons:
 before_install:
   - mysql -e 'CREATE DATABASE jabberd2;'
 
+  - mysql < schema.sql
+
 install:
   - sudo -H easy_install pip
   # http://urllib3.readthedocs.io/en/latest/user-guide.html#ssl-py2
@@ -38,6 +40,8 @@ script:
   - "ansible-playbook tests/test.yml -i tests/inventory --connection=local"
 
   - "ansible-playbook tests/test.yml -i tests/inventory --connection=local"
+
+  - /usr/local/bin/jabberd2-router -h
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
