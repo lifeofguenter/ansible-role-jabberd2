@@ -14,7 +14,8 @@
 - debug:
     var: jabberd2_current.stdout
 
-- debug: "msg='matched pattern 3'"
+- debug:
+    msg: 'matched!'
   when: jabberd2_current.stdout | search(jabberd2_version_string_match)
 
 - include_tasks: compile-jabberd2.yml
