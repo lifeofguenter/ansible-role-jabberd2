@@ -43,6 +43,10 @@ script:
 
   - /usr/local/bin/jabberd2-router -h
 
+  - sudo netstat -lnp
+
+  - sudo ps auxww | grep -i jabber
+
   - curl -sSfi localhost:5222
 
 notifications:
