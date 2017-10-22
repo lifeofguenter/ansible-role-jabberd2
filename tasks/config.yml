@@ -7,12 +7,16 @@
     system: yes
   become: yes
 
-- name: create run folder
+- name: create folders
   file:
-    path: /run/jabberd2
+    path: "{{ item }}"
     state: directory
     mode: 0755
     owner: jabber
+  with_items:
+    - /run/jabberd2
+    - /var/log/jabberd2
+    - /var/spool/muc
   become: yes
 
 - stat:
@@ -26,14 +30,6 @@
     mode: 0644
   become: yes
   when: stat_tmpfilesd.stat.exists
-
-- name: create log folder
-  file:
-    path: /var/log/jabberd2
-    state: directory
-    mode: 0755
-    owner: jabber
-  become: yes
 
 - name: add logrotate config
   copy:
@@ -55,5 +51,6 @@
     - router.xml
     - s2s.xml
     - sm.xml
+    - muc.xml
   become: yes
   notify: restart_jabberd2

@@ -54,4 +54,5 @@
     - 30sm
     - 40s2s
     - 50c2s
+    - 60muc
   become: yes

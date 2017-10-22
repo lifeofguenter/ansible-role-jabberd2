@@ -1,4 +1,4 @@
-/var/log/jabberd2/*.log {
+/var/log/jabberd2/router.log /var/log/jabberd2/sm.log /var/log/jabberd2/c2s.log /var/log/jabberd2/s2s.log {
   daily
   missingok
   rotate 7

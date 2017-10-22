@@ -5,3 +5,33 @@
     src: https://ftp.weheartwebsites.de/linux/misc/mu-conference-{{ mu_conference_version }}.tar.gz
     dest: /tmp
     remote_src: yes
+
+- name: disable non-mysql
+  command: sed -i '{{ item }}s/\(.*\)/#\1/' src/Makefile
+  args:
+    chdir: /tmp/mu-conference-{{ mu_conference_version }}
+  with_items:
+    - 2
+    - 4
+
+- name: enable mysql
+  command: sed -i '{{ item }}s/#\(.*\)/\1/' src/Makefile
+  args:
+    chdir: /tmp/mu-conference-{{ mu_conference_version }}
+  with_items:
+    - 3
+    - 5
+
+- name: make
+  command: make
+  args:
+    chdir: /tmp/mu-conference-{{ mu_conference_version }}
+
+- name: copy into bin-path
+  copy:
+    src: /tmp/mu-conference-{{ mu_conference_version }}/src/mu-conference
+    dest: /usr/local/bin/mu-conference
+    mode: 'a+x'
+    remote_src: yes
+  become: yes
+  notify: restart_jabberd2

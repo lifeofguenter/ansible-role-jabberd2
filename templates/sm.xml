@@ -331,9 +331,7 @@
       -->
 
       <!-- example entry for a groupchat (conference) service -->
-      <!--
-      <item category='conference' type='public' jid='conference.jabber.org' name='Text conferencing'/>
-      -->
+      <item category='conference' type='public' jid='conference.{{ jabberd2_domain }}' name='Text conferencing'/>
 
     </items>
 

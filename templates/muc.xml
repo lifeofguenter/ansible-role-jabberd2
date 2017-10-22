@@ -1,0 +1,65 @@
+<jcr>
+  <!--
+       This is a config file for a copy of MU-Conference, compiled against
+       the Jabber Component Runtime (JCR). This is the same file that I use
+       to connect to my development server, running jabberd2 beta2
+
+       In order to connect to a jabberd v1.4 server, simply change the
+       <name> value to muclinker, and make sure the muclinker section is in
+       your main jabber.xml file, as per the MU-Conference README file.
+  -->
+
+  <name>conference.{{ jabberd2_domain }}</name> <!-- the jid of your component -->
+  <host>conference.{{ jabberd2_domain }}</host> <!-- this should be the same as above -->
+  <ip>127.0.0.1</ip> <!-- adress of the jabber server -->
+  <port>5347</port>  <!-- port used to connect the service to the jabber server -->
+  <secret>{{ jabberd2_component_secret }}</secret> <!-- secret shared with the jabber server -->
+
+  <spool>/var/spool/muc</spool> <!-- directory containing the rooms data -->
+  <logdir>/var/log/jabberd2</logdir> <!-- directory containing the debug log (the file is called mu-conference.log) -->
+  <pidfile>/run/jabberd2/muc.pid</pidfile> <!-- file that will contain the PID of the process -->
+
+  <!--   <logstderr/> --> <!-- uncomment to also send log to stderr -->
+
+  <loglevel>124</loglevel> <!-- log verbosity, 255 for very verbose, 0 for quiet -->
+
+    <conference xmlns="jabber:config:conference">
+      <public/> <!-- rooms are public when created, comment to make them private by default -->
+      <!-- the vCard section contains the vCard of the service -->
+      <vCard>
+        <FN>Public Chatrooms</FN>
+        <DESC>This service is for public chatrooms.</DESC>
+        <URL>https://{{ jabberd2_domain }}/</URL>
+      </vCard>
+      <history>1024</history> <!-- maximum numbers of history lines send when joining a room -->
+      <!-- <logdir>./logs/</logdir> --><!-- where to store the room logs, comment to disable logging -->
+      <!-- <logsubdirs/> -->
+      <!-- <stylesheet>../style.css</stylesheet> --><!--URL of the log stylesheet -->
+      <!-- default text to send to legacy clients, will also be used in the logs -->
+      <notice>
+        <join>has become available</join>
+        <leave>has left</leave>
+        <rename>is now known as</rename>
+      </notice>
+      <!-- lists of admins of the service, add a <user/> tag by admin -->
+      <sadmin>
+        <user>root@{{ jabberd2_domain }}</user>
+      </sadmin>
+      <!-- <dynamic/> --> <!-- when uncommented, only dynamic rooms can be created -->
+      <persistent/> <!-- persistent rooms will be created, overide <dynamic/> -->
+      <locknicks/> <!-- enforce the user nickname to the user part of his jid -->
+      <!-- <roomlock/> --> <!-- uncomment to allow only admins to create rooms -->
+      <!-- <hideempty/> --> <!-- uncomment to hide rooms with no participants -->
+      <!-- configuration of MySQL, only used if the MySQL exports is activated, see README.sql -->
+      <mysql>
+        <user>{{ jabberd2_mysql_user }}</user>
+        {% if jabberd2_mysql_password is defined %}
+        <pass>{{ jabberd2_mysql_password }}</pass>
+        {% else %}
+        <pass/>
+        {% endif %}
+        <database>{{ jabberd2_mysql_db }}</database>
+        <host>{{ jabberd2_mysql_host }}</host>
+      </mysql>
+    </conference>
+</jcr>

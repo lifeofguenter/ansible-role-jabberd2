@@ -21,3 +21,13 @@
     - default-libmysqlclient-dev
     - libglib2.0-dev
   become: yes
+
+- name: add systemd service
+  copy:
+    src: muc.service.ini
+    dest: /lib/systemd/system/muc.service
+    mode: 0644
+  become: yes
+  notify:
+    - reload_systemd
+    - restart_jabberd2

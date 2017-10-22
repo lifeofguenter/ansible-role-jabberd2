@@ -6,3 +6,7 @@
     state: restarted
     enabled: yes
   become: yes
+
+- name: reload_systemd
+  command: systemctl daemon-reload
+  become: yes
