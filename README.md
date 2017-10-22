@@ -2,7 +2,7 @@
 
 # Ansible Role: jabberd2
 
-An Ansible role that installs jabberd2 on Debian like systems.
+An Ansible role that installs jabberd2 on Debian-like systems.
 
 ## Requirements
 
@@ -38,10 +38,17 @@ none
 
 ## Example Playbook
 
-    - hosts: xmpp
-      roles:
-        - { role: lifeofguenter.jabberd2 }
+```yaml
+
+- hosts: xmpp
+  roles:
+    - { role: lifeofguenter.jabberd2 }
+```
 
 ## License
 
-MIT
+Licensed under the MIT License. See the [LICENSE file](LICENSE) for details.
+
+## Author Information
+
+[Gunter Grodotzki](https://lifeofguenter.de)
