@@ -1,6 +1,8 @@
+SET @@global.innodb_large_prefix = 1;
+
 CREATE TABLE `authreg` (
-    `username` TEXT, KEY `username` (`username`(255)),
-    `realm` TINYTEXT, KEY `realm` (`realm`(255)),
+    `username` VARCHAR(255), KEY `username` (`username`(255)),
+    `realm` VARCHAR(255), KEY `realm` (`realm`(255)),
     `password` TINYTEXT ) DEFAULT CHARSET=UTF8;
 
 --
@@ -12,7 +14,7 @@ CREATE TABLE `authreg` (
 -- Used by: core
 --
 CREATE TABLE `active` (
-    `collection-owner` TEXT NOT NULL, KEY(`collection-owner`(255)),
+    `collection-owner` VARCHAR(255) NOT NULL, KEY(`collection-owner`(255)),
     `object-sequence` BIGINT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`object-sequence`),
     `time` INT ) DEFAULT CHARSET=UTF8;
 
@@ -21,7 +23,7 @@ CREATE TABLE `active` (
 -- Used by: mod_iq_last
 --
 CREATE TABLE `logout` (
-    `collection-owner` TEXT NOT NULL, KEY(`collection-owner`(255)),
+    `collection-owner` VARCHAR(255) NOT NULL, KEY(`collection-owner`(255)),
     `object-sequence` BIGINT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`object-sequence`),
     `time` INT ) DEFAULT CHARSET=UTF8;
 
@@ -30,7 +32,7 @@ CREATE TABLE `logout` (
 -- Used by: mod_roster
 --
 CREATE TABLE `roster-items` (
-    `collection-owner` TEXT NOT NULL, KEY(`collection-owner`(255)),
+    `collection-owner` VARCHAR(255) NOT NULL, KEY(`collection-owner`(255)),
     `object-sequence` BIGINT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`object-sequence`),
     `jid` TEXT,
     `name` TEXT,
@@ -43,7 +45,7 @@ CREATE TABLE `roster-items` (
 -- Used by: mod_roster
 --
 CREATE TABLE `roster-groups` (
-    `collection-owner` TEXT NOT NULL, KEY(`collection-owner`(255)),
+    `collection-owner` VARCHAR(255) NOT NULL, KEY(`collection-owner`(255)),
     `object-sequence` BIGINT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`object-sequence`),
     `jid` TEXT,
     `group` TEXT ) DEFAULT CHARSET=UTF8;
@@ -111,7 +113,7 @@ CREATE TABLE `vcard` (
 -- Used by: mod_offline
 --
 CREATE TABLE `queue` (
-    `collection-owner` TEXT NOT NULL, KEY(`collection-owner`(255)),
+    `collection-owner` VARCHAR(255) NOT NULL, KEY(`collection-owner`(255)),
     `object-sequence` BIGINT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`object-sequence`),
     `xml` MEDIUMTEXT ) DEFAULT CHARSET=UTF8;
 
@@ -120,7 +122,7 @@ CREATE TABLE `queue` (
 -- Used by: mod_iq_private
 --
 CREATE TABLE `private` (
-    `collection-owner` TEXT NOT NULL, KEY(`collection-owner`(255)),
+    `collection-owner` VARCHAR(255) NOT NULL, KEY(`collection-owner`(255)),
     `object-sequence` BIGINT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`object-sequence`),
     `ns` TEXT,
     `xml` MEDIUMTEXT ) DEFAULT CHARSET=UTF8;
@@ -130,7 +132,7 @@ CREATE TABLE `private` (
 -- Used by: mod_announce
 --
 CREATE TABLE `motd-message` (
-    `collection-owner` TEXT NOT NULL, KEY(`collection-owner`(255)),
+    `collection-owner` VARCHAR(255) NOT NULL, KEY(`collection-owner`(255)),
     `object-sequence` BIGINT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`object-sequence`),
     `xml` TEXT ) DEFAULT CHARSET=UTF8;
 
@@ -139,7 +141,7 @@ CREATE TABLE `motd-message` (
 -- Used by: mod_announce
 --
 CREATE TABLE `motd-times` (
-    `collection-owner` TEXT NOT NULL, KEY(`collection-owner`(255)),
+    `collection-owner` VARCHAR(255) NOT NULL, KEY(`collection-owner`(255)),
     `object-sequence` BIGINT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`object-sequence`),
     `time` INT ) DEFAULT CHARSET=UTF8;
 
@@ -148,7 +150,7 @@ CREATE TABLE `motd-times` (
 -- Used by: mod_privacy
 --
 CREATE TABLE `privacy-default` (
-    `collection-owner` TEXT NOT NULL, KEY(`collection-owner`(255)),
+    `collection-owner` VARCHAR(255) NOT NULL, KEY(`collection-owner`(255)),
     `object-sequence` BIGINT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`object-sequence`),
     `default` text ) DEFAULT CHARSET=UTF8;
 
@@ -157,7 +159,7 @@ CREATE TABLE `privacy-default` (
 -- Used by: mod_privacy
 --
 CREATE TABLE `privacy-items` (
-    `collection-owner` TEXT NOT NULL, KEY(`collection-owner`(255)),
+    `collection-owner` VARCHAR(255) NOT NULL, KEY(`collection-owner`(255)),
     `object-sequence` BIGINT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`object-sequence`),
     `list` TEXT,
     `type` TEXT,
@@ -171,7 +173,7 @@ CREATE TABLE `privacy-items` (
 -- Used by: mod_vacation
 --
 CREATE TABLE `vacation-settings` (
-    `collection-owner` TEXT NOT NULL, KEY(`collection-owner`(255)),
+    `collection-owner` VARCHAR(255) NOT NULL, KEY(`collection-owner`(255)),
     `object-sequence` BIGINT NOT NULL AUTO_INCREMENT, PRIMARY KEY(`object-sequence`),
     `start` INT,
     `end` INT,
@@ -182,7 +184,7 @@ CREATE TABLE `vacation-settings` (
 -- Used by: mod_status
 --
 CREATE TABLE `status` (
-    `collection-owner` TEXT NOT NULL, KEY(`collection-owner`(255)),
+    `collection-owner` VARCHAR(255) NOT NULL, KEY(`collection-owner`(255)),
     `object-sequence` BIGINT NOT NULL AUTO_INCREMENT, KEY(`object-sequence`),
     `status` TEXT NOT NULL,
     `show` TEXT NOT NULL,
@@ -194,7 +196,7 @@ CREATE TABLE `status` (
 -- mu-conference
 --
 CREATE TABLE `rooms` (
-    `jid` varchar(512) NOT NULL,
+    `jid` varchar(255) NOT NULL,
     `name` text NOT NULL,
     `desc` text NOT NULL,
     `topic` text NOT NULL,
@@ -209,7 +211,7 @@ CREATE TABLE `rooms` (
 -- Table structure for table `rooms_lists`
 --
 CREATE TABLE `rooms_lists` (
-    `jid_room` varchar(512) NOT NULL,
-    `jid_user` varchar(512) NOT NULL,
+    `jid_room` varchar(255) NOT NULL,
+    `jid_user` varchar(255) NOT NULL,
     `affil` enum('administrator','owner','member','outcast') NOT NULL
 ) DEFAULT CHARSET=UTF8;
