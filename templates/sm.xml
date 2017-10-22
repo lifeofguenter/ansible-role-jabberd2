@@ -58,7 +58,7 @@
       <port>{{ jabberd2_mysql_port }}</port>
       <dbname>{{ jabberd2_mysql_db }}</dbname>
       <user>{{ jabberd2_mysql_user }}</user>
-      <pass>{{ jabberd2_mysql_password }}</pass>
+      <pass>{{ jabberd2_mysql_password | default("") }}</pass>
 
       <!-- Transaction support. If this is commented out, transactions
            will be disabled. This might make database accesses faster,

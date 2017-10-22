@@ -6,6 +6,4 @@ jabberd2_mysql_host: 127.0.0.1
 
 jabberd2_mysql_user: jabberd2
 
-jabberd2_mysql_pass: ""
-
 jabberd2_mysql_db: jabberd2
